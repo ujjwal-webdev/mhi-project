@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company</title>
+</head>
+<body>
+    <form action="/company/insert_item/" autocomplete="off" method="post">
+        {% csrf_token %}
+        <label>Enter ID :</label>
+        <input type="number" name="SimplePID"> (If the table is empty, You can start with ID = 1, or else Please count the number of products in the table and fill accordingly.)
+        <br>
+        <br>
+        <Label>Enter Product ID :</Label>
+        <input type="number" name="ProductID">
+        <br>
+        <br>
+        <label>Enter Product Name :</label>
+        <input type="text " name="ProductName">
+        <br>
+        <br>
+        <label>Enter Product Description :</label>
+        <input type="text " name="ProductDesc">
+        <br>
+        <br>
+        <label>Enter Product URL :</label>
+        <input type="text " name="ProductURL">
+        <br>
+        <br>
+        <label>Enter ID :</label> 
+        <input type="number" name="SimpleAID"> (If the table is empty, You can start with ID = 1, or else Please count the number of applications in the table and fill accordingly.
+        <br>
+        <br>
+        <Label>Enter Application ID :</Label>
+        <input type="number" name="ApplicationID">
+        <br>
+        <br>
+        <label>Enter Application Name :</label>
+        <input type="text " name="ApplicationName">
+        <br>
+        <br>
+        <label>Enter Application Description :</label>
+        <input type="text " name="ApplicationDesc">
+        <br>
+        <br>
+        <label>Enter Application URL :</label>
+        <input type="text " name="ApplicationURL">
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for key, value in data.items %}
+            <tr>
+                <td rowspan="{{ value|length }}">{{ key }}</td>
+                <td>{{ value.0 }}</td>
+            </tr>
+            {% for i in value|slice:"1:" %}
+            <tr>
+                <td>{{ i }}</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    
+</body>
+<style>
+    .styled-table{
+        border-collapse: collapse;
+        margin: auto;
+        width: 50%;
+        font-size: 0.9rem;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 100px rgba(0.5,0.5,0.5,0.5);
+    }
+    .styled-table thead tr{
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,td{
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr{
+        border-bottom: 1px solid #dddddd;
+    }
+    .styled-table tbody tr:nth-of-type(even){
+        background-color: #f3f3f3;
+    }
+    .styled-table tbody tr:nth-last-of-type{
+        border-bottom: 2px solid #009879;
+    }
+    .styled-table tbody tr td{
+        text-align: center;
+    }
+</style>
+</html>
